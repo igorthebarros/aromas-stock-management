@@ -1,0 +1,33 @@
+﻿{
+  "$schema": "http://json.schemastore.org/launchsettings.json",
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:57328",
+      "sslPort": 44386
+    }
+  },
+  "profiles": {
+    "Stage": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ConnectionString": "Server=localhost;Port=5432;Username=postgres;Password=@dmin123;Database=aromas;"
+      }
+    },
+    "Aromas.WebApp": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "",
+      "ConnectionString": "Server=localhost;Port=5432;Username=postgres;Password=@dmin123;Database=aromas;",
+      "applicationUrl": "https://localhost:5001",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ConnectionString": "Server=localhost;Port=5432;Username=postgres;Password=@dmin123;Database=aromas;"
+      }
+    }
+  }
+}
