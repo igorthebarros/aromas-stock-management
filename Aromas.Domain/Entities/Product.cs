@@ -10,7 +10,7 @@ namespace Aromas.Domain.Entities
         public string Name { get; set; }
         public bool IsInStock { get; set; }
         public int StockQuantity { get; set; }
-        public DateTime? CreatedAt { get; set; }
+        public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public int CategoryId { get; set; }
     }
