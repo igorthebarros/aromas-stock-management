@@ -1,4 +1,6 @@
 using Aromas.Infra.Data.Context;
+using Aromas.MVC.AutoMapper;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,6 +31,16 @@ namespace Aromas.WebApp
             services.AddControllers();
             services.AddDbContext<ApplicationDbContext>(
                 options => options.UseNpgsql("Server=localhost;Port=5432;Username=postgres;Password=@dmin123;Database=aromas;"));
+
+            var autoMapperConfig = new MapperConfiguration(config =>
+            {
+                config.AddProfile<UserMapperProfile>();
+                config.AddProfile<ProductMapperProfile>();
+                config.AddProfile<CategoryMapperProfile>();
+            });
+
+            IMapper mapper = autoMapperConfig.CreateMapper();
+            services.AddSingleton(mapper);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -49,5 +61,6 @@ namespace Aromas.WebApp
                 endpoints.MapControllers();
             });
         }
+
     }
 }
