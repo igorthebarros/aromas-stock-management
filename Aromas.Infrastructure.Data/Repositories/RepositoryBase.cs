@@ -1,10 +1,9 @@
-﻿using Aromas.Domain.Interfaces;
+﻿using Aromas.Domain.Interfaces.Repositories;
 using Aromas.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Aromas.Infra.Data.Repositories
 {

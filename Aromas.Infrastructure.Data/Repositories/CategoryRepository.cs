@@ -1,5 +1,5 @@
 ﻿using Aromas.Domain.Entities;
-using Aromas.Domain.Interfaces;
+using Aromas.Domain.Interfaces.Repositories;
 
 namespace Aromas.Infra.Data.Repositories
 {

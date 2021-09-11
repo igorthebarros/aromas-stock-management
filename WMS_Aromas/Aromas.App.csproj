@@ -5,15 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="EntityFramework" Version="6.4.4" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Aromas.Infrastructure.Data\Aromas.Infra.Data.csproj" />
+    <ProjectReference Include="..\Aromas.Domain\Aromas.Domain.csproj" />
   </ItemGroup>
 
 

@@ -1,19 +1,18 @@
+using Aromas.App.Interface;
+using Aromas.App.Services;
+using Aromas.Domain.Interfaces.Repositories;
+using Aromas.Domain.Interfaces.Services;
+using Aromas.Domain.Services;
 using Aromas.Infra.Data.Context;
+using Aromas.Infra.Data.Repositories;
 using Aromas.MVC.AutoMapper;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Aromas.WebApp
 {
@@ -29,8 +28,11 @@ namespace Aromas.WebApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
             services.AddDbContext<ApplicationDbContext>(
                 options => options.UseNpgsql("Server=localhost;Port=5432;Username=postgres;Password=@dmin123;Database=aromas;"));
+
+            services.AddControllersWithViews();
 
             var autoMapperConfig = new MapperConfiguration(config =>
             {
@@ -38,9 +40,21 @@ namespace Aromas.WebApp
                 config.AddProfile<ProductMapperProfile>();
                 config.AddProfile<CategoryMapperProfile>();
             });
-
             IMapper mapper = autoMapperConfig.CreateMapper();
             services.AddSingleton(mapper);
+
+            services.AddTransient(typeof(IAppServiceBase<>), typeof(AppServiceBase<>));
+            services.AddTransient<IUserAppService, UserAppService>();
+
+
+
+            services.AddTransient(typeof(IServiceBase<>), typeof(ServiceBase<>));
+            services.AddTransient<IUserService, UserService>();
+
+
+            services.AddTransient(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
+            services.AddTransient<IUserRepository, UserRepository>();
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -10,12 +10,14 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.7" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Aromas.Domain\Aromas.Domain.csproj" />
     <ProjectReference Include="..\Aromas.Infrastructure.Data\Aromas.Infra.Data.csproj" />
+    <ProjectReference Include="..\WMS_Aromas\Aromas.App.csproj" />
   </ItemGroup>
 
 

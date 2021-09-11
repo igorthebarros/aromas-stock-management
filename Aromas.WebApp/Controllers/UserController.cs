@@ -1,19 +1,34 @@
-﻿using AutoMapper;
+﻿using Aromas.App.Interface;
+using Aromas.Domain.Entities;
+using Aromas.MVC.ViewModels;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Aromas.MVC.Controllers
 {
     public class UserController : Controller
     {
         readonly IMapper _mapper;
+        private readonly IUserAppService _userAppService;
 
-        // GET: UserController
+        public UserController(IUserAppService userAppService, IMapper mapper)
+        {
+            _userAppService = userAppService;
+            _mapper = mapper;
+        }
+
+        [Route("")]
         public ActionResult Index()
+        {
+            var users = _userAppService.GetAll();
+            var model = _mapper.Map<IEnumerable<UserViewModel>>(users);
+            return View(model);
+        }
+
+        [Route("Create")]
+        public ActionResult Create()
         {
             return View();
         }
@@ -24,11 +39,6 @@ namespace Aromas.MVC.Controllers
             return View();
         }
 
-        // GET: UserController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
 
         // POST: UserController/Create
         [HttpPost]
