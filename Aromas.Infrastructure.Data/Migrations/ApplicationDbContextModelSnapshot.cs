@@ -24,26 +24,42 @@ namespace Aromas.Infra.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
+                        .HasColumnName("Id")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<bool>("Active")
                         .HasColumnType("boolean");
 
-                    b.Property<DateTime?>("CreatedAt")
-                        .HasColumnType("timestamp without time zone");
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp without time zone")
+                        .HasColumnName("CreatedAt")
+                        .HasDefaultValueSql("now()");
 
                     b.Property<string>("Name")
-                        .HasColumnType("text");
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)")
+                        .HasColumnName("Name");
 
                     b.Property<string>("SubCategory")
-                        .HasColumnType("text");
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)")
+                        .HasColumnName("SubCategory");
 
                     b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("timestamp without time zone")
+                        .HasColumnName("UpdatedAt");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("PK_CATEGORY");
 
-                    b.ToTable("Categories");
+                    b.HasIndex("Name")
+                        .IsUnique()
+                        .HasDatabaseName("IX_CATEGORY_NAME");
+
+                    b.ToTable("Category", "aromas");
                 });
 
             modelBuilder.Entity("Aromas.Domain.Entities.Menu", b =>
@@ -51,26 +67,45 @@ namespace Aromas.Infra.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
+                        .HasColumnName("Id")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<bool>("Active")
-                        .HasColumnType("boolean");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false)
+                        .HasColumnName("Active");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp without time zone");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp without time zone")
+                        .HasColumnName("CreatedAt")
+                        .HasDefaultValueSql("now()");
 
                     b.Property<string>("Name")
-                        .HasColumnType("text");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)")
+                        .HasColumnName("Name");
 
                     b.Property<string>("Path")
-                        .HasColumnType("text");
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)")
+                        .HasColumnName("Path");
 
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp without time zone");
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp without time zone")
+                        .HasColumnName("UpdatedAt");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("PK_MENU");
 
-                    b.ToTable("Menus");
+                    b.HasIndex("Name")
+                        .IsUnique()
+                        .HasDatabaseName("IX_MENU_NAME");
+
+                    b.ToTable("Menu", "aromas");
                 });
 
             modelBuilder.Entity("Aromas.Domain.Entities.Permissions.PolicyUser", b =>
@@ -78,24 +113,27 @@ namespace Aromas.Infra.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
+                        .HasColumnName("Id")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int>("PermissionId")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("PolicyId")
-                        .HasColumnType("integer");
+                    b.Property<int>("PolicyId")
+                        .HasColumnType("integer")
+                        .HasColumnName("PolicyId");
 
                     b.Property<int>("UserId")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("UserId");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("PolicyId");
+                    b.HasKey("Id")
+                        .HasName("PK_POLICYUSER");
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("PoliciesUser");
+                    b.HasIndex("PolicyId", "UserId")
+                        .IsUnique()
+                        .HasDatabaseName("IX_POLICYUSER_IDAK");
+
+                    b.ToTable("PolicyUser", "aromas");
                 });
 
             modelBuilder.Entity("Aromas.Domain.Entities.Policy", b =>
@@ -103,23 +141,39 @@ namespace Aromas.Infra.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
+                        .HasColumnName("Id")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<bool>("Active")
-                        .HasColumnType("boolean");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false)
+                        .HasColumnName("Active");
 
                     b.Property<DateTime?>("CreatedAt")
-                        .HasColumnType("timestamp without time zone");
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp without time zone")
+                        .HasColumnName("CreatedAt")
+                        .HasDefaultValueSql("now()");
 
                     b.Property<int>("Name")
-                        .HasColumnType("integer");
+                        .HasMaxLength(200)
+                        .HasColumnType("integer")
+                        .HasColumnName("Name");
 
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("timestamp without time zone");
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp without time zone")
+                        .HasColumnName("UpdatedAt");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("PK_POLICY");
 
-                    b.ToTable("Policies");
+                    b.HasIndex("Name")
+                        .IsUnique()
+                        .HasDatabaseName("IX_POLICY_NAME");
+
+                    b.ToTable("Policy", "aromas");
                 });
 
             modelBuilder.Entity("Aromas.Domain.Entities.PolicyMenu", b =>
@@ -127,33 +181,30 @@ namespace Aromas.Infra.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
+                        .HasColumnName("Id")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<bool>("Active")
                         .HasColumnType("boolean");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp without time zone");
-
                     b.Property<int>("MenuId")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("MenuId");
 
-                    b.Property<int>("PermissioId")
-                        .HasColumnType("integer");
+                    b.Property<int>("PolicyId")
+                        .HasColumnType("integer")
+                        .HasColumnName("PolicyId");
 
-                    b.Property<int?>("PolicyId")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("PK_POLICYMENU");
 
                     b.HasIndex("MenuId");
 
-                    b.HasIndex("PolicyId");
+                    b.HasIndex("PolicyId", "MenuId")
+                        .IsUnique()
+                        .HasDatabaseName("IX_POLICYMENU_IDAK");
 
-                    b.ToTable("PoliciesMenu");
+                    b.ToTable("PolicyMenu", "aromas");
                 });
 
             modelBuilder.Entity("Aromas.Domain.Entities.Product", b =>
@@ -161,31 +212,47 @@ namespace Aromas.Infra.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
+                        .HasColumnName("Id")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int?>("CategoryId")
-                        .HasColumnType("integer");
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("integer")
+                        .HasColumnName("Category");
 
-                    b.Property<DateTime?>("CreatedAt")
-                        .HasColumnType("timestamp without time zone");
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp without time zone")
+                        .HasColumnName("CreatedAt")
+                        .HasDefaultValueSql("now()");
 
                     b.Property<bool>("IsInStock")
-                        .HasColumnType("boolean");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false)
+                        .HasColumnName("IsInStock");
 
                     b.Property<string>("Name")
-                        .HasColumnType("text");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)")
+                        .HasColumnName("Name");
 
                     b.Property<int>("StockQuantity")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("StockQuantity");
 
                     b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("timestamp without time zone")
+                        .HasColumnName("UpdatedAt");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("PK_PRODUCT");
 
-                    b.HasIndex("CategoryId");
+                    b.HasIndex("Name")
+                        .IsUnique()
+                        .HasDatabaseName("IX_PRODUCT_NAME");
 
-                    b.ToTable("Products");
+                    b.ToTable("Product", "aromas");
                 });
 
             modelBuilder.Entity("Aromas.Domain.Entities.User", b =>
@@ -193,47 +260,71 @@ namespace Aromas.Infra.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
+                        .HasColumnName("Id")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<bool>("Active")
-                        .HasColumnType("boolean");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false)
+                        .HasColumnName("Enable");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp without time zone");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp without time zone")
+                        .HasColumnName("CreatedAt")
+                        .HasDefaultValueSql("now()");
 
-                    b.Property<int>("Email")
-                        .HasColumnType("integer");
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)")
+                        .HasColumnName("Email");
 
                     b.Property<string>("Name")
-                        .HasColumnType("text");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)")
+                        .HasColumnName("Name");
 
-                    b.Property<int>("Password")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("Permission")
-                        .HasColumnType("integer");
+                    b.Property<string>("Password")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
+                        .HasColumnName("Password");
 
                     b.Property<string>("Surname")
-                        .HasColumnType("text");
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)")
+                        .HasColumnName("Surname");
 
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp without time zone");
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp without time zone")
+                        .HasColumnName("UpdatedAt");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("PK_USER");
 
-                    b.ToTable("Users");
+                    b.HasIndex("Name")
+                        .IsUnique()
+                        .HasDatabaseName("IX_USER_NAME");
+
+                    b.ToTable("User", "aromas");
                 });
 
             modelBuilder.Entity("Aromas.Domain.Entities.Permissions.PolicyUser", b =>
                 {
                     b.HasOne("Aromas.Domain.Entities.Policy", "Policy")
                         .WithMany("PolicyUser")
-                        .HasForeignKey("PolicyId");
+                        .HasForeignKey("PolicyId")
+                        .HasConstraintName("FK_POLICYUSER_POLICY")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.HasOne("Aromas.Domain.Entities.User", "User")
                         .WithMany("PolicyUser")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasConstraintName("FK_POLICYUSER_USER")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Policy");
@@ -246,25 +337,20 @@ namespace Aromas.Infra.Data.Migrations
                     b.HasOne("Aromas.Domain.Entities.Menu", "Menu")
                         .WithMany("PolicyMenu")
                         .HasForeignKey("MenuId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasConstraintName("FK_POLICYMENU_MENU")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Aromas.Domain.Entities.Policy", "Policy")
                         .WithMany("PolicyMenu")
-                        .HasForeignKey("PolicyId");
+                        .HasForeignKey("PolicyId")
+                        .HasConstraintName("FK_POLICYMENU_POLICY")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("Menu");
 
                     b.Navigation("Policy");
-                });
-
-            modelBuilder.Entity("Aromas.Domain.Entities.Product", b =>
-                {
-                    b.HasOne("Aromas.Domain.Entities.Category", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryId");
-
-                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("Aromas.Domain.Entities.Menu", b =>

@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Aromas.Infra.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210905152943_CreateDB")]
-    partial class CreateDB
+    [Migration("20210911212904_FixUserProps")]
+    partial class FixUserProps
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -32,8 +32,7 @@ namespace Aromas.Infra.Data.Migrations
                     b.Property<bool>("Active")
                         .HasColumnType("boolean");
 
-                    b.Property<DateTime?>("CreatedAt")
-                        .IsRequired()
+                    b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp without time zone")
                         .HasColumnName("CreatedAt")
@@ -97,7 +96,7 @@ namespace Aromas.Infra.Data.Migrations
                         .HasColumnType("character varying(255)")
                         .HasColumnName("Path");
 
-                    b.Property<DateTime>("UpdatedAt")
+                    b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp without time zone")
                         .HasColumnName("UpdatedAt");
 
@@ -165,7 +164,7 @@ namespace Aromas.Infra.Data.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("Name");
 
-                    b.Property<DateTime?>("UpdatedAt")
+                    b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("timestamp without time zone")
                         .HasColumnName("UpdatedAt");
 
@@ -222,8 +221,7 @@ namespace Aromas.Infra.Data.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("Category");
 
-                    b.Property<DateTime?>("CreatedAt")
-                        .IsRequired()
+                    b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp without time zone")
                         .HasColumnName("CreatedAt")
@@ -279,9 +277,10 @@ namespace Aromas.Infra.Data.Migrations
                         .HasColumnName("CreatedAt")
                         .HasDefaultValueSql("now()");
 
-                    b.Property<int>("Email")
+                    b.Property<string>("Email")
+                        .IsRequired()
                         .HasMaxLength(200)
-                        .HasColumnType("integer")
+                        .HasColumnType("character varying(200)")
                         .HasColumnName("Email");
 
                     b.Property<string>("Name")
@@ -290,9 +289,9 @@ namespace Aromas.Infra.Data.Migrations
                         .HasColumnType("character varying(100)")
                         .HasColumnName("Name");
 
-                    b.Property<int>("Password")
+                    b.Property<string>("Password")
                         .HasMaxLength(50)
-                        .HasColumnType("integer")
+                        .HasColumnType("character varying(50)")
                         .HasColumnName("Password");
 
                     b.Property<string>("Surname")
@@ -300,7 +299,7 @@ namespace Aromas.Infra.Data.Migrations
                         .HasColumnType("character varying(100)")
                         .HasColumnName("Surname");
 
-                    b.Property<DateTime>("UpdatedAt")
+                    b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp without time zone")
                         .HasColumnName("UpdatedAt");
 

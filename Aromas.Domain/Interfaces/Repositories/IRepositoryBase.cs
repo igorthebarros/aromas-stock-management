@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Aromas.Domain.Interfaces
+namespace Aromas.Domain.Interfaces.Repositories
 {
     public interface IRepositoryBase<TEntity> where TEntity : class
     {
