@@ -46,15 +46,21 @@ namespace Aromas.WebApp
             services.AddTransient(typeof(IAppServiceBase<>), typeof(AppServiceBase<>));
             services.AddTransient<IUserAppService, UserAppService>();
 
-
-
             services.AddTransient(typeof(IServiceBase<>), typeof(ServiceBase<>));
             services.AddTransient<IUserService, UserService>();
 
 
-            services.AddTransient(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
-            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
+            services.AddScoped<IUserRepository, UserRepository>();
 
+            //TODO: Remove razor dependencies when Angular is added
+            services.AddRazorPages()
+                .AddRazorRuntimeCompilation();
+
+            services.AddMvc(options =>
+            {
+                options.EnableEndpointRouting = false;
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -74,6 +80,11 @@ namespace Aromas.WebApp
             {
                 endpoints.MapControllers();
             });
+
+            //app.UseMvc(options =>
+            //{
+            //    options.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
+            //});
         }
 
     }

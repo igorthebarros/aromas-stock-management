@@ -45,22 +45,6 @@ namespace Aromas.Infra.Data.Context
             base.OnConfiguring(builder);
         }
 
-        //private void SaveChangesLog()
-        //{
-        //    ChangeTracker.DetectChanges();
-        //    ChangeTracker.Entries().Where(x => x.State == EntityState.Added || x.State == EntityState.Modified).ToList();
-
-        //    try
-        //    {
-        //        ChangeTracker.AutoDetectChangesEnabled = false;
-        //        ChangeTracker.AutoDetectChangesEnabled = true;
-        //    }
-        //    catch(DbUpdateException ex)
-        //    {
-        //        throw ex;
-        //    }
-        //}
-
         private void SetDateTimeNow()
         {
             var newEntities = ChangeTracker.Entries().Where(e => e.State == EntityState.Added).ToList();
@@ -83,7 +67,6 @@ namespace Aromas.Infra.Data.Context
         }
         public override int SaveChanges()
         {
-            //SaveChangesLog();
             SetDateTimeNow();
             return base.SaveChanges();
         }
