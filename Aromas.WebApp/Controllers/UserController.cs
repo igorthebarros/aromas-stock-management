@@ -20,7 +20,6 @@ namespace Aromas.MVC.Controllers
             _mapper = mapper;
         }
 
-
         [HttpGet]
         [Route("User")]
         public ActionResult Index()
@@ -187,7 +186,6 @@ namespace Aromas.MVC.Controllers
                 return RedirectToAction(nameof(Index));
             }
         }
-
 
         [HttpPost]
         [Route("User/Delete/{id}")]
