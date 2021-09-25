@@ -30,7 +30,8 @@ namespace Aromas.WebApp
             services.AddControllers();
 
             services.AddDbContext<ApplicationDbContext>(
-                options => options.UseNpgsql("Server=localhost;Port=5432;Username=postgres;Password=@dmin123;Database=aromas;"));
+                options => options.UseInMemoryDatabase("connectionString")
+            );
 
             services.AddControllersWithViews();
 
@@ -80,12 +81,6 @@ namespace Aromas.WebApp
             {
                 endpoints.MapControllers();
             });
-
-            //app.UseMvc(options =>
-            //{
-            //    options.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
-            //});
         }
-
     }
 }

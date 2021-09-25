@@ -9,7 +9,8 @@ namespace Aromas.Infra.Data.Context
 {
     public class ApplicationDbContext : DbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> builderOptions) : base(builderOptions)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> builderOptions)
+            : base(builderOptions)
         {
         }
 
@@ -37,12 +38,9 @@ namespace Aromas.Infra.Data.Context
 
             base.OnModelCreating(builder);
         }
-
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
-            builder.UseNpgsql("Server=localhost;Port=5432;Username=postgres;Password=@dmin123;Database=aromas;");
-
-            base.OnConfiguring(builder);
+            builder.UseInMemoryDatabase("conenctionString");
         }
 
         private void SetDateTimeNow()
