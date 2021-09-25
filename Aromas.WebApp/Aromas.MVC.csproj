@@ -23,5 +23,10 @@
     <ProjectReference Include="..\WMS_Aromas\Aromas.App.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Category\" />
+    <Folder Include="Views\Product\" />
+  </ItemGroup>
+
 
 </Project>
