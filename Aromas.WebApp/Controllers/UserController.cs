@@ -2,7 +2,6 @@
 using Aromas.Domain.Entities;
 using Aromas.MVC.ViewModels;
 using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;

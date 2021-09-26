@@ -46,13 +46,17 @@ namespace Aromas.WebApp
 
             services.AddTransient(typeof(IAppServiceBase<>), typeof(AppServiceBase<>));
             services.AddTransient<IUserAppService, UserAppService>();
+            services.AddTransient<ICategoryAppService, CategoryAppService>();
 
             services.AddTransient(typeof(IServiceBase<>), typeof(ServiceBase<>));
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<ICategoryService, CategoryService>();
 
 
             services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
 
             //TODO: Remove razor dependencies when Angular is added
             services.AddRazorPages()
