@@ -106,7 +106,8 @@ namespace Aromas.MVC.Controllers
 
                 if (model == null)
                 {
-                    TempData["error"] = "User not found.";
+                    TempData["error"] = "Category not found.";
+                    TempData["error"] = "Category not found.";
                     return RedirectToAction(nameof(Index));
                 }
 
@@ -144,7 +145,7 @@ namespace Aromas.MVC.Controllers
                 //TODO: Add policy when policies is added
 
                 _categoryAppService.Update(dataBaseCategory);
-                TempData["success"] = "User updated successfully!";
+                TempData["success"] = "Category updated successfully!";
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)

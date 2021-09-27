@@ -2,7 +2,7 @@
 
 namespace Aromas.App.Interface
 {
-    public interface IProductServiceBase : IAppServiceBase<Product>
+    public interface IProductAppService : IAppServiceBase<Product>
     {
     }
 }
