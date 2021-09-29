@@ -1,0 +1,8 @@
+<a routerLink="/product/cadastrar">Cadastrar produto</a>
+
+<ol>
+    <li *ngFor="let product of products">
+        Nome: {{product.name}}
+        <!-- <a routerLink="/product/cadastrar/{{product.id}}">Editar produto</a> -->
+    </li>
+</ol>
