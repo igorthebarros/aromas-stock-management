@@ -27,6 +27,17 @@ namespace Aromas.WebApp
 
         public void ConfigureServices(IServiceCollection services)
         {
+            //Configurar a política de Cors para requisições de qualquer origem
+            services.AddCors(
+                options => 
+                {
+                    options.AddPolicy("CorsPolicy", builder => builder
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader());
+                }
+            );
+
             services.AddControllers();
 
             services.AddDbContext<ApplicationDbContext>(
@@ -70,6 +81,8 @@ namespace Aromas.WebApp
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors("CorsPolicy");
 
             app.UseHttpsRedirection();
 
