@@ -8,15 +8,15 @@ import { Observable } from 'rxjs';
 })
 export class ProdutoService {
 
-  private baseUrl = "http://localhost:5001/Product";
+  private baseUrl = "http://localhost:5000/api";
 
   constructor(private http: HttpClient) { }
 
   list(): Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.baseUrl}`);
+    return this.http.get<Product[]>(`${this.baseUrl}/Product`);
   }
 
   create(product: Product): Observable<Product>{
-    return this.http.post<Product>(`${this.baseUrl}/Create`, product);
+    return this.http.post<Product>(`${this.baseUrl}/Product/Create`, product);
   }
 }
