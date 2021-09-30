@@ -28,7 +28,7 @@ namespace Aromas.MVC.Controllers
 
             return View(model);
         }
-
+        
         [HttpGet]
         [Route("User/Create")]
         public ActionResult Create()
@@ -47,9 +47,9 @@ namespace Aromas.MVC.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         [Route("User/Create")]
-        public ActionResult Create(UserViewModel model)
+        public ActionResult Create([FromBody] UserViewModel model)
         {
             try
             {

@@ -15,8 +15,8 @@
       "launchBrowser": true,
       "launchUrl": "",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development",
-        "ConnectionString": "Server=localhost;Port=5432;Username=postgres;Password=@dmin123;Database=aromas;"
+        "ASPNETCORE_ENVIRONMENT": "Development"
+        //"ConnectionString": "Server=localhost;Port=5432;Username=postgres;Password=@dmin123;Database=aromas;"
       }
     }
   }
