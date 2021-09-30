@@ -8,34 +8,34 @@ using System.Collections.Generic;
 
 namespace Aromas.MVC.Controllers
 {
-    public class UserController : Controller
+    public class CategoryController : Controller
     {
         readonly IMapper _mapper;
-        private readonly IUserAppService _userAppService;
+        private readonly ICategoryAppService _categoryAppService;
 
-        public UserController(IUserAppService userAppService, IMapper mapper)
+        public CategoryController(ICategoryAppService categoryAppService, IMapper mapper)
         {
-            _userAppService = userAppService;
+            _categoryAppService = categoryAppService;
             _mapper = mapper;
         }
 
         [HttpGet]
-        [Route("User")]
+        [Route("Category")]
         public ActionResult Index()
         {
-            var users = _userAppService.GetAll();
-            var model = _mapper.Map<IEnumerable<UserViewModel>>(users);
+            var categories = _categoryAppService.GetAll();
+            var model = _mapper.Map<IEnumerable<CategoryViewModel>>(categories);
 
             return View(model);
         }
 
         [HttpGet]
-        [Route("User/Create")]
+        [Route("Category/Create")]
         public ActionResult Create()
         {
             try
             {
-                var model = new UserViewModel();
+                var model = new CategoryViewModel();
                 return View(model);
             }
             catch (Exception ex)
@@ -48,27 +48,21 @@ namespace Aromas.MVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("User/Create")]
-        public ActionResult Create(UserViewModel model)
+        [Route("Category/Create")]
+        public ActionResult Create(CategoryViewModel model)
         {
             try
             {
-                if (!ModelState.IsValid)
+                var category = _mapper.Map<Category>(model);
+
+                if (category == null)
                 {
-                    TempData["error"] = ($"An error occured: Model is invalid.");
+                    TempData["error"] = "Error while saving category";
                     return RedirectToAction(nameof(Index));
                 }
 
-                var user = _mapper.Map<User>(model);
-
-                if (user == null)
-                {
-                    TempData["error"] = "Error while saving user.";
-                    return RedirectToAction(nameof(Index));
-                }
-
-                _userAppService.Create(user);
-                TempData["success"] = "New user created!";
+                _categoryAppService.Create(category);
+                TempData["success"] = "New category created!";
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
@@ -79,21 +73,21 @@ namespace Aromas.MVC.Controllers
         }
 
         [HttpGet]
-        [Route("User/Details/{id}")]
+        [Route("Category/Details/{id}")]
         public ActionResult Details(int id)
         {
             try
             {
-                var model = _userAppService.GetById(id);
+                var model = _categoryAppService.GetById(id);
 
-                if (!ModelState.IsValid && model == null)
+                if (!ModelState.IsValid)
                 {
-                    TempData["error"] = "User not found.";
+                    TempData["error"] = "Category not found.";
                     return RedirectToAction(nameof(Index));
                 }
 
-                var user = _mapper.Map<UserViewModel>(model);
-                return View(user);
+                var category = _mapper.Map<CategoryViewModel>(model);
+                return View(category);
             }
             catch (Exception ex)
             {
@@ -103,22 +97,23 @@ namespace Aromas.MVC.Controllers
         }
 
         [HttpGet]
-        [Route("User/Edit/{id}")]
+        [Route("Category/Edit/{id}")]
         public ActionResult Edit(int id)
         {
             try
             {
-                var model = _userAppService.GetById(id);
+                var model = _categoryAppService.GetById(id);
 
                 if (model == null)
                 {
-                    TempData["error"] = "User not found.";
+                    TempData["error"] = "Category not found.";
+                    TempData["error"] = "Category not found.";
                     return RedirectToAction(nameof(Index));
                 }
 
-                var user = _mapper.Map<UserViewModel>(model);
+                var category = _mapper.Map<CategoryViewModel>(model);
 
-                return View(user);
+                return View(category);
             }
             catch (Exception ex)
             {
@@ -128,34 +123,32 @@ namespace Aromas.MVC.Controllers
         }
 
         [HttpPost]
-        [Route("User/Edit/{id}")]
+        [Route("Category/Edit/{id}")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(UserViewModel user)
+        public ActionResult Edit(CategoryViewModel category)
         {
             try
             {
-                User dataBaseUser = _userAppService.GetById(user.Id);
+                Category dataBaseCategory = _categoryAppService.GetById(category.Id);
 
-                if (!ModelState.IsValid && dataBaseUser == null)
+                if (!ModelState.IsValid && dataBaseCategory == null)
                 {
                     TempData["error"] = ($"An error occured: Model is invalid.");
                     return RedirectToAction(nameof(Index));
                 }
 
-                dataBaseUser.Id = user.Id;
-                dataBaseUser.Name = user.Name;
-                dataBaseUser.Surname = user.Surname;
-                dataBaseUser.Email = user.Email;
-                dataBaseUser.Password = user.Password;
-                dataBaseUser.Active = user.Active;
-                dataBaseUser.UpdatedAt = user.UpdatedAt;
+                dataBaseCategory.Id = category.Id;
+                dataBaseCategory.Name = category.Name;
+                dataBaseCategory.SubCategory = category.SubCategory;
+                dataBaseCategory.UpdatedAt = category.UpdatedAt;
+                dataBaseCategory.Active = category.Active;
                 //TODO: Add policy when policies is added
 
-                _userAppService.Update(dataBaseUser);
-                TempData["success"] = "User updated successfully!";
+                _categoryAppService.Update(dataBaseCategory);
+                TempData["success"] = "Category updated successfully!";
                 return RedirectToAction(nameof(Index));
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 TempData["error"] = ($"An error occured: {0}", ex);
                 return RedirectToAction(nameof(Index));
@@ -163,21 +156,21 @@ namespace Aromas.MVC.Controllers
         }
 
         [HttpGet]
-        [Route("User/Delete/{id}")]
+        [Route("Category/Delete/{id}")]
         public ActionResult Delete(int id)
         {
             try
             {
-                var model = _userAppService.GetById(id);
+                var model = _categoryAppService.GetById(id);
 
                 if (!ModelState.IsValid && model == null)
                 {
-                    TempData["error"] = "User not found.";
+                    TempData["error"] = "Category not found.";
                     return RedirectToAction(nameof(Index));
                 }
 
-                var user = _mapper.Map<UserViewModel>(model);
-                return View(user);
+                var category = _mapper.Map<CategoryViewModel>(model);
+                return View(category);
             }
             catch (Exception ex)
             {
@@ -187,31 +180,29 @@ namespace Aromas.MVC.Controllers
         }
 
         [HttpPost]
-        [Route("User/Delete/{id}")]
+        [Route("Category/Delete/{id}")]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(UserViewModel user)
+        public ActionResult Delete(CategoryViewModel category)
         {
             try
             {
-                User dataBaseUser = _userAppService.GetById(user.Id);
+                Category dataBaseCategory = _categoryAppService.GetById(category.Id);
 
-                if (!ModelState.IsValid && dataBaseUser == null)
+                if (!ModelState.IsValid && dataBaseCategory == null)
                 {
                     TempData["error"] = ($"An error occured: ModelState is invalid.");
                     return RedirectToAction(nameof(Index));
                 }
 
-                dataBaseUser.Id = user.Id;
-                dataBaseUser.Name = user.Name;
-                dataBaseUser.Surname = user.Surname;
-                dataBaseUser.Email = user.Email;
-                dataBaseUser.Password = user.Password;
-                dataBaseUser.Active = user.Active;
-                dataBaseUser.UpdatedAt = user.UpdatedAt;
+                dataBaseCategory.Id = category.Id;
+                dataBaseCategory.Name = category.Name;
+                dataBaseCategory.SubCategory = category.SubCategory;
+                dataBaseCategory.UpdatedAt = category.UpdatedAt;
+                dataBaseCategory.Active = category.Active;
                 //TODO: Add policy when policies is added
 
-                _userAppService.Delete(dataBaseUser);
-                TempData["success"] = "User deleted successfully!";
+                _categoryAppService.Delete(dataBaseCategory);
+                TempData["success"] = "Category deleted successfully!";
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
