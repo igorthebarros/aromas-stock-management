@@ -97,6 +97,54 @@ namespace Aromas.MVC.Controllers
         }
 
         [HttpGet]
+        [Route("Product/GetProductByIsInStock/{true}")]
+        public ActionResult GetProductByInStock(bool isInStock)
+        {
+            try
+            {
+                List<Product> model = _productAppService.GetByIsInStock(true);
+                
+                if (model == null) 
+                {
+                    TempData["error"] = "Fail!";
+                    return RedirectToAction(nameof(Index));
+                }
+                    
+                var product = _mapper.Map<List<ProductViewModel>>(model);
+                return Ok(product);
+            }
+            catch (Exception ex)
+            {
+                TempData["error"] = ($"An error occured: {0}", ex);
+                return RedirectToAction(nameof(Index));
+            }
+        }
+
+        [HttpGet]
+        [Route("Product/GetProductByCategoryId/{id}")]
+        public ActionResult GetProductByCategoryId(int id)
+        {
+            try
+            {
+                List<Product> model = _productAppService.GetByCategoryId(id);
+
+                if (model == null)
+                {
+                    TempData["error"] = "Fail!";
+                    return RedirectToAction(nameof(Index));
+                }
+
+                var product = _mapper.Map<List<ProductViewModel>>(model);
+                return Ok(product);
+            }
+            catch (Exception ex)
+            {
+                TempData["error"] = ($"An error occured: {0}", ex);
+                return RedirectToAction(nameof(Index));
+            }
+        }
+
+        [HttpGet]
         [Route("Product/Edit/{id}")]
         public ActionResult Edit(int id)
         {
@@ -112,7 +160,7 @@ namespace Aromas.MVC.Controllers
 
                 var product = _mapper.Map<ProductViewModel>(model);
 
-                return View(product);
+                return Ok(product);
             }
             catch (Exception ex)
             {
