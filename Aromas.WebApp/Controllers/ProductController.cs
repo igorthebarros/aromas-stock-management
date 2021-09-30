@@ -97,12 +97,12 @@ namespace Aromas.MVC.Controllers
         }
 
         [HttpGet]
-        [Route("Product/GetProductByIsInStock/{true}")]
+        [Route("Product/GetProductByIsInStock/{isInStock}")]
         public ActionResult GetProductByInStock(bool isInStock)
         {
             try
             {
-                List<Product> model = _productAppService.GetByIsInStock(true);
+                List<Product> model = _productAppService.GetByIsInStock(isInStock);
                 
                 if (model == null) 
                 {
