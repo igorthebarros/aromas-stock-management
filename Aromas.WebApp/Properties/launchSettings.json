@@ -10,6 +10,7 @@
   },
   "profiles": {
     "Stage": {
+      "applicationUrl": "https://localhost:5001",
       "commandName": "IISExpress",
       "launchBrowser": true,
       "launchUrl": "",
