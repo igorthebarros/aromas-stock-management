@@ -1,0 +1,25 @@
+mat-card-content {
+    padding: 5px;
+  }
+  
+.example-full-width {
+  width: 100%;
+  display: block;
+}
+  
+.button_list {
+  display: flex;
+  justify-content: space-between;
+  text-decoration: none;
+}
+  
+.margin_cancelar {
+  margin-left: 10px;
+}
+
+.container{
+  margin-top: 5%;
+  width: 60%;
+  margin-left: auto;
+	margin-right: auto;
+}
