@@ -29,9 +29,9 @@ export class RegisterUserComponent implements OnInit {
       password: this.password,
       active: this.active,
     };
-    this.service.register(user).subscribe((user) => {
+    this.service.register(user).subscribe(user => {
       console.log(user);
-      // this.router.navigate(['list']);
+      this.router.navigate(['user/list']);
     });
   }
 }

@@ -11,6 +11,9 @@ import { ProdutoService } from 'src/app/services/produto.service';
 export class CadastrarProdutoComponent implements OnInit {
 
   name!: string;
+  //isInStock!: boolean;
+  stockQuantity!: number;
+  categoryId!: number;
 
   constructor(private router: Router, private service: ProdutoService) { }
 
@@ -20,6 +23,9 @@ export class CadastrarProdutoComponent implements OnInit {
   cadastrar(): void {
     let product : Product = {
       name: this.name,
+      //isInStock: this.isInStock,
+      stockQuantity: this.stockQuantity,
+      categoryId: this.categoryId
     };
     this.service.create(product).subscribe(product => {
       console.log(product);

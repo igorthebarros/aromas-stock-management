@@ -8,19 +8,19 @@ import { Observable } from 'rxjs';
 })
 export class UserService {
 
-  private baseUrl = "http://localhost:5001/";
+  private baseUrl = "http://localhost:5000/api";
 
   constructor(private http: HttpClient) { }
 
   register(user: User): Observable<User> {
-    return this.http.post<User>(`${this.baseUrl}user/create`, user);
+    return this.http.post<User>(`${this.baseUrl}/User/Create`, user);
   } 
 
   list(): Observable<User[]> {
-    return this.http.get<User[]>(`${this.baseUrl}user`);
+    return this.http.get<User[]>(`${this.baseUrl}/User`);
   }
 
   delete(_id: string): Observable<User[]> {
-    return this.http.delete<User[]>(`${this.baseUrl}delete/${_id}`);
+    return this.http.delete<User[]>(`${this.baseUrl}/User/Delete/${_id}`);
   }
 }

@@ -8,6 +8,7 @@ using System.Collections.Generic;
 
 namespace Aromas.MVC.Controllers
 {
+    [Route ("api")]
     public class UserController : Controller
     {
         readonly IMapper _mapper;
@@ -26,7 +27,7 @@ namespace Aromas.MVC.Controllers
             var users = _userAppService.GetAll();
             var model = _mapper.Map<IEnumerable<UserViewModel>>(users);
 
-            return View(model);
+            return Ok(model);
         }
         
         [HttpGet]
