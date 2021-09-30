@@ -8,7 +8,7 @@ namespace Aromas.Infra.Data.Repositories
 {
     public class ProductRepository : RepositoryBase<Product>, IProductRepository
     {
-        protected ApplicationDbContext Db = new ApplicationDbContext();
+        private ApplicationDbContext Db = new ApplicationDbContext();
 
         public List<Product> GetByCategoryId(int id)
         {
