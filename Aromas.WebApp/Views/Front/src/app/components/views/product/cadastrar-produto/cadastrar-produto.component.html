@@ -31,6 +31,12 @@
           <mat-label for="categoryId">ID da categoria</mat-label>
           <input matInput placeholder="ID" type="number" name="categoryId" [(ngModel)]="categoryId"/>
         </mat-form-field>
+
+        <!-- <ol>
+          <li *ngFor="let category of categories">
+              Nome: {{category.name}}
+          </li>
+        </ol> -->
   
         <!-- <br>
         <mat-radio-group aria-label="Select an option">
@@ -40,6 +46,6 @@
       </mat-card-content>
     
       <button mat-raised-button color="primary" (click)="cadastrar()">Cadastrar</button>
-      <button class="margin_cancelar" mat-raised-button color="warn" routerLink="product/list">Cancelar</button>
+      <button class="margin_cancelar" mat-raised-button color="warn" routerLink="" (click)="cancelar()">Cancelar</button>
     </mat-card>
     

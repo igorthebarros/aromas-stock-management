@@ -19,6 +19,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ListUserComponent } from './components/views/user/list-user/list-user.component';
 import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './components/template/header/header.component';
+import { CadastrarCategoriaComponent } from './components/views/category/cadastrar-categoria/cadastrar-categoria.component';
+import { ListarCategoriaComponent } from './components/views/category/listar-categoria/listar-categoria.component';
 
 
 @NgModule({
@@ -28,7 +30,9 @@ import { HeaderComponent } from './components/template/header/header.component';
     ListarProdutosComponent,
     RegisterUserComponent,
     ListUserComponent,
-    HeaderComponent
+    HeaderComponent,
+    CadastrarCategoriaComponent,
+    ListarCategoriaComponent
   ],
   imports: [
     BrowserModule,

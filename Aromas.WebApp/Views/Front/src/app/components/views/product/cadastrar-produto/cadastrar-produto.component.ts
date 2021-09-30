@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Product } from 'src/app/models/product';
 import { ProdutoService } from 'src/app/services/produto.service';
+import { Category } from 'src/app/models/category';
 
 @Component({
   selector: 'app-cadastrar-produto',
@@ -31,9 +32,9 @@ export class CadastrarProdutoComponent implements OnInit {
       console.log(product);
       this.router.navigate([""]);
     });
-    
   }
 
-
-
+  cancelar(): void {
+    this.router.navigate(["product/list"]);
+  }
 }

@@ -20,7 +20,7 @@ export class UserService {
     return this.http.get<User[]>(`${this.baseUrl}/User`);
   }
 
-  delete(_id: string): Observable<User[]> {
-    return this.http.delete<User[]>(`${this.baseUrl}/User/Delete/${_id}`);
+  delete(id: string): Observable<User[]> {
+    return this.http.delete<User[]>(`${this.baseUrl}/User/Delete/${id}`);
   }
 }

@@ -25,12 +25,11 @@ export class ListUserComponent implements OnInit {
     })
   }
   
-  delete(_id: string): void {
-    this.service.delete(_id).subscribe((user) => {
+  delete(id: string): void {
+    this.service.delete(id).subscribe((user) => {
       this.user = new MatTableDataSource<User>(user);
       // this.router.navigate(['list']);
       this.ngOnInit();
     });
-    alert("Livro deletado com sucesso!");
   }
 }
