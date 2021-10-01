@@ -3,9 +3,6 @@
       <mat-card-title>
         Novo Usuário
       </mat-card-title>
-      <a>
-        <button mat-raised-button color="primary" routerLink="user/list">Usuários Cadastrados</button>
-      </a>
     </div>
   
     <mat-card-content>
@@ -29,9 +26,10 @@
         <input matInput placeholder="Senha" type="password" name="password" [(ngModel)]="password"/>
       </mat-form-field>
 
+      Inativo <mat-slide-toggle name="active" [(ngModel)]="active">Ativo</mat-slide-toggle>
     </mat-card-content>
   
     <button mat-raised-button color="primary" (click)="register()">Cadastrar</button>
-    <button class="margin_cancelar" mat-raised-button color="warn" routerLink="user/list">Cancelar</button>
+    <button class="margin_cancelar" mat-raised-button color="warn" (click)="cancelar()">Cancelar</button>
   </mat-card>
   

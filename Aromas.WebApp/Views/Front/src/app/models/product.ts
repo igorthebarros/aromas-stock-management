@@ -1,7 +1,7 @@
 export interface Product {
     id?: number;
     name: string;
-    //isInStock: boolean;
+    isInStock: boolean;
     stockQuantity: number;
     createdAt?: Date;
     updatedAt?: Date;
