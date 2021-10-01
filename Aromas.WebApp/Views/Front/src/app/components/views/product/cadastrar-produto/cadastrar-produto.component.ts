@@ -12,7 +12,7 @@ import { Category } from 'src/app/models/category';
 export class CadastrarProdutoComponent implements OnInit {
 
   name!: string;
-  //isInStock!: boolean;
+  isInStock!: boolean;
   stockQuantity!: number;
   categoryId!: number;
 
@@ -24,7 +24,7 @@ export class CadastrarProdutoComponent implements OnInit {
   cadastrar(): void {
     let product : Product = {
       name: this.name,
-      //isInStock: this.isInStock,
+      isInStock: this.isInStock,
       stockQuantity: this.stockQuantity,
       categoryId: this.categoryId
     };

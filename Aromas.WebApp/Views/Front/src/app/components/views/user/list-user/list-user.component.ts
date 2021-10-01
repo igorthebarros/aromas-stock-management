@@ -11,6 +11,8 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ListUserComponent implements OnInit {
 
+  id!: number;
+
   // users: User[] = [];
   user!: MatTableDataSource<User>;
   displayedColumns: string[] = [ 'nome', 'surname', 'email', 'situacao', 'acoes'];
@@ -25,11 +27,15 @@ export class ListUserComponent implements OnInit {
     })
   }
   
-  delete(id: string): void {
+  delete(id: number): void {
     this.service.delete(id).subscribe((user) => {
       this.user = new MatTableDataSource<User>(user);
-      // this.router.navigate(['list']);
+      //this.router.navigate(['user/list']);
       this.ngOnInit();
     });
+  }
+
+  cadastrarUsuario(): void {
+    this.router.navigate(["user/register"]);
   }
 }

@@ -32,17 +32,8 @@
           <input matInput placeholder="ID" type="number" name="categoryId" [(ngModel)]="categoryId"/>
         </mat-form-field>
 
-        <!-- <ol>
-          <li *ngFor="let category of categories">
-              Nome: {{category.name}}
-          </li>
-        </ol> -->
-  
-        <!-- <br>
-        <mat-radio-group aria-label="Select an option">
-          <mat-radio-button color="primary" value="Active">Ativo</mat-radio-button>
-        </mat-radio-group> -->
-        
+        <mat-slide-toggle name="inStock" [(ngModel)]="isInStock">Em estoque</mat-slide-toggle>
+
       </mat-card-content>
     
       <button mat-raised-button color="primary" (click)="cadastrar()">Cadastrar</button>

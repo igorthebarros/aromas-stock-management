@@ -14,7 +14,7 @@ export class ListarProdutosComponent implements OnInit {
   //products: Product[] = [];
 
   product!: MatTableDataSource<Product>;
-  displayedColumns: string[] = [ 'nome', 'quantidade', 'idcategory', 'acoes'];
+  displayedColumns: string[] = [ 'nome', 'quantidade', 'idcategory', 'isInStock', 'acoes'];
 
   constructor(private service: ProdutoService, private router: Router) { }
 
