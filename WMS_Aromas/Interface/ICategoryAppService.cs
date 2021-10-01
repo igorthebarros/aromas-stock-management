@@ -4,5 +4,7 @@ namespace Aromas.App.Interface
 {
     public interface ICategoryAppService : IAppServiceBase<Category>
     {
+    
     }
+
 }
