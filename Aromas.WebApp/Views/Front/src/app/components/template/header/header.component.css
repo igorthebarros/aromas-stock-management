@@ -1,0 +1,17 @@
+span{ 
+    margin-left: 10px;
+}
+
+.list{
+    display: flex;
+    text-decoration: underline;
+    color: beige
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.item{
+    text-decoration: underline;
+}

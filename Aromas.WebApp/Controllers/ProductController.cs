@@ -8,6 +8,7 @@ using System.Collections.Generic;
 
 namespace Aromas.MVC.Controllers
 {
+    [Route ("api")]
     public class ProductController : Controller
     {
         readonly IMapper _mapper;
@@ -26,7 +27,7 @@ namespace Aromas.MVC.Controllers
             var products = _productAppService.GetAll();
             var model = _mapper.Map<IEnumerable<ProductViewModel>>(products);
 
-            return View(model);
+            return Ok(model);
         }
 
         [HttpGet]
@@ -47,9 +48,9 @@ namespace Aromas.MVC.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         [Route("Product/Create")]
-        public ActionResult Create(ProductViewModel model)
+        public ActionResult Create([FromBody]ProductViewModel model)
         {
             try
             {

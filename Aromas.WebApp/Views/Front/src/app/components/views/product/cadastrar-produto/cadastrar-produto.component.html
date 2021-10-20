@@ -1,0 +1,42 @@
+<!-- <div id="name">
+    <label for="name">Name:</label>
+    <input type="text" name="name" [(ngModel)]="name">
+</div>
+<button (click)="cadastrar()">Cadastrar</button> -->
+
+<mat-card class="container">
+    <div class="button_list">
+      <mat-card-title>
+        Novo Produto
+      </mat-card-title>
+    </div>
+
+    <mat-card-content>
+        <mat-form-field class="example-full-width" >
+          <mat-label for="name">Nome</mat-label>
+          <input matInput placeholder="Nome" type="text" name="name" [(ngModel)]="name"/>
+        </mat-form-field>
+    
+        <!-- <mat-form-field class="example-full-width">
+          <mat-label for="isInStock">Em estoque</mat-label>
+          <input matInput placeholder="isInStock" type="text" name="isInStock" [(ngModel)]="isInStock"/>
+        </mat-form-field> -->
+  
+        <mat-form-field class="example-full-width" >
+          <mat-label for="stockQuantity">Quantidade</mat-label>
+          <input matInput placeholder="Quantidade" type="number" name="stockQuantity" [(ngModel)]="stockQuantity"/>
+        </mat-form-field>
+  
+        <mat-form-field class="example-full-width" >
+          <mat-label for="categoryId">ID da categoria</mat-label>
+          <input matInput placeholder="ID" type="number" name="categoryId" [(ngModel)]="categoryId"/>
+        </mat-form-field>
+
+        <mat-slide-toggle name="inStock" [(ngModel)]="isInStock">Em estoque</mat-slide-toggle>
+
+      </mat-card-content>
+    
+      <button mat-raised-button color="primary" (click)="cadastrar()">Cadastrar</button>
+      <button class="margin_cancelar" mat-raised-button color="warn" routerLink="" (click)="cancelar()">Cancelar</button>
+    </mat-card>
+    

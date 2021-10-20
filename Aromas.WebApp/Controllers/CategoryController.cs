@@ -8,6 +8,7 @@ using System.Collections.Generic;
 
 namespace Aromas.MVC.Controllers
 {
+    [Route("api")]
     public class CategoryController : Controller
     {
         readonly IMapper _mapper;
@@ -26,7 +27,7 @@ namespace Aromas.MVC.Controllers
             var categories = _categoryAppService.GetAll();
             var model = _mapper.Map<IEnumerable<CategoryViewModel>>(categories);
 
-            return View(model);
+            return Ok(model);
         }
 
         [HttpGet]
@@ -47,9 +48,9 @@ namespace Aromas.MVC.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         [Route("Category/Create")]
-        public ActionResult Create(CategoryViewModel model)
+        public ActionResult Create([FromBody] CategoryViewModel model)
         {
             try
             {

@@ -1,0 +1,35 @@
+<mat-card class="container">
+    <div class="button_list">
+      <mat-card-title>
+        Novo Usuário
+      </mat-card-title>
+    </div>
+  
+    <mat-card-content>
+      <mat-form-field class="example-full-width" >
+        <mat-label for="name">Nome</mat-label>
+        <input matInput placeholder="Nome" type="text" name="name" [(ngModel)]="name"/>
+      </mat-form-field>
+  
+      <mat-form-field class="example-full-width">
+        <mat-label for="surname">Sobrenome</mat-label>
+        <input matInput placeholder="Sobrenome" type="text" name="surname" [(ngModel)]="surname"/>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" >
+        <mat-label for="email">E-mail</mat-label>
+        <input matInput placeholder="E-mail" type="text" name="email" [(ngModel)]="email"/>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" >
+        <mat-label for="password">Password</mat-label>
+        <input matInput placeholder="Senha" type="password" name="password" [(ngModel)]="password"/>
+      </mat-form-field>
+
+      Inativo <mat-slide-toggle name="active" [(ngModel)]="active">Ativo</mat-slide-toggle>
+    </mat-card-content>
+  
+    <button mat-raised-button color="primary" (click)="register()">Cadastrar</button>
+    <button class="margin_cancelar" mat-raised-button color="warn" (click)="cancelar()">Cancelar</button>
+  </mat-card>
+  

@@ -1,0 +1,30 @@
+<mat-card class="container">
+    <div class="button_list">
+      <mat-card-title>
+        Nova Categoria
+      </mat-card-title>
+    </div>
+
+    <mat-card-content>
+        <mat-form-field class="example-full-width" >
+          <mat-label for="name">Nome: </mat-label>
+          <input matInput placeholder="Nome" type="text" name="name" [(ngModel)]="name">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" >
+          <mat-label for="subC">Sub-categoria: </mat-label>
+          <input matInput placeholder="Sub-categoria" type="text" name="subC" [(ngModel)]="subCategory">
+        </mat-form-field>
+
+
+   
+        <!-- <mat-form-field class="example-full-width">
+          <mat-label for="isInStock">Em estoque</mat-label>
+          <input matInput placeholder="isInStock" type="text" name="isInStock" [(ngModel)]="isInStock"/>
+        </mat-form-field> -->   
+      </mat-card-content>
+    
+      <button mat-raised-button color="primary" (click)="cadastrar()">Cadastrar</button>
+      <button class="margin_cancelar" mat-raised-button color="warn" routerLink="" (click)="cancelar()">Cancelar</button>
+</mat-card>
+    
