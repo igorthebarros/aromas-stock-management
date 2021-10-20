@@ -60,10 +60,6 @@ namespace Aromas.WebApp
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
 
-            //TODO: Remove razor dependencies when Angular is added
-            services.AddRazorPages()
-                .AddRazorRuntimeCompilation();
-
             services.AddMvc(options =>
             {
                 options.EnableEndpointRouting = false;
