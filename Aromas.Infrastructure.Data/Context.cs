@@ -30,7 +30,7 @@ namespace Aromas.Infra.Data.Context
         {
             new UserMapping(builder.Entity<User>());
             new ProductMapping(builder.Entity<Product>());
-            new CategoryMapping(builder.Entity<Category>());
+            new CategoryMapping(builder.Entity<Category>());    
             new MenuMapping(builder.Entity<Menu>());
             new PolicyMapping(builder.Entity<Policy>());
             new PolicyMenuMapping(builder.Entity<PolicyMenu>());
@@ -40,7 +40,7 @@ namespace Aromas.Infra.Data.Context
         }
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
-            builder.UseInMemoryDatabase("conenctionString");
+            builder.UseSqlServer("Server=tcp:numenor.database.windows.net,1433;Initial Catalog=aromasbd;Persist Security Info=False;User ID=frodo;Password=senh@123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
         }
 
         private void SetDateTimeNow()

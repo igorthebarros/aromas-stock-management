@@ -27,7 +27,6 @@ namespace Aromas.WebApp
 
         public void ConfigureServices(IServiceCollection services)
         {
-            //Configurar a política de Cors para requisições de qualquer origem
             services.AddCors(
                 options => 
                 {
@@ -41,7 +40,7 @@ namespace Aromas.WebApp
             services.AddControllers();
 
             services.AddDbContext<ApplicationDbContext>(
-                options => options.UseInMemoryDatabase("connectionString")
+                options => options.UseSqlServer(Configuration.GetConnectionString("Azure"))
             );
 
             services.AddControllersWithViews();
@@ -52,6 +51,7 @@ namespace Aromas.WebApp
                 config.AddProfile<ProductMapperProfile>();
                 config.AddProfile<CategoryMapperProfile>();
             });
+
             IMapper mapper = autoMapperConfig.CreateMapper();
             services.AddSingleton(mapper);
 

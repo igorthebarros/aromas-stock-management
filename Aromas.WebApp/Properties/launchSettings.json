@@ -1,22 +1,17 @@
-﻿{
+{
   "$schema": "http://json.schemastore.org/launchsettings.json",
-  "iisSettings": {
-    "windowsAuthentication": false,
-    "anonymousAuthentication": true,
-    "iisExpress": {
-      "applicationUrl": "http://localhost:57328",
-      "sslPort": 44386
-    }
-  },
   "profiles": {
     "Stage": {
-      "applicationUrl": "https://localhost:5001",
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ConnectionString": "Server=tcp:numenor.database.windows.net,1433;Initial Catalog=aromasbd;Persist Security Info=False;User ID=frodo;Password=senh@123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+      },
+      "ConnectionStrings": {
+        "Azure": "Server=tcp:numenor.database.windows.net,1433;Initial Catalog=aromasbd;Persist Security Info=False;User ID=frodo;Password=senh@123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+      },
+      "applicationUrl": "https://localhost:5001"
     }
   }
 }
