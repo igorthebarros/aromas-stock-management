@@ -11,7 +11,7 @@
       "ConnectionStrings": {
         "Azure": "Server=tcp:numenor.database.windows.net,1433;Initial Catalog=aromasbd;Persist Security Info=False;User ID=frodo;Password=senh@123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
       },
-      "applicationUrl": "https://localhost:5001"
+      "applicationUrl": "https://localhost:5000"
     }
   }
 }
