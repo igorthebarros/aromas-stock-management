@@ -1,3 +1,5 @@
+import { Category } from "./category";
+
 export interface Product {
     id?: number;
     name: string;
@@ -6,4 +8,5 @@ export interface Product {
     createdAt?: Date;
     updatedAt?: Date;
     categoryId: number;
+    category?: Category; // aqui tbm
 }

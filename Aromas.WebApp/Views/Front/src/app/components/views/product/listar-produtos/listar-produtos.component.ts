@@ -11,8 +11,8 @@ import { ProdutoService } from 'src/app/services/produto.service';
 })
 export class ListarProdutosComponent implements OnInit {
 
-  //products: Product[] = [];
-
+  id!: number;
+  
   product!: MatTableDataSource<Product>;
   displayedColumns: string[] = [ 'nome', 'quantidade', 'idcategory', 'isInStock', 'acoes'];
 
@@ -31,8 +31,16 @@ export class ListarProdutosComponent implements OnInit {
       this.product = new MatTableDataSource<Product>(product);
     });
   }
-
-  cadastrarProduto(): void {
-    this.router.navigate(["product/register"]);
+  
+  delete(id: number): void {
+    this.service.delete(id).subscribe((product) => {
+      this.product = new MatTableDataSource<Product>(product);
+      this.router.navigate(['user/list']);
+    });
+    this.ngOnInit();
   }
+  
+    cadastrarProduto(): void {
+      this.router.navigate(["product/register"]);
+    }
 }

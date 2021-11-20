@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Product } from 'src/app/models/product';
 import { ProdutoService } from 'src/app/services/produto.service';
 import { Category } from 'src/app/models/category';
+import { CategoryService } from 'src/app/services/category.service';
 
 @Component({
   selector: 'app-cadastrar-produto',
@@ -15,10 +16,16 @@ export class CadastrarProdutoComponent implements OnInit {
   isInStock!: boolean;
   stockQuantity!: number;
   categoryId!: number;
+  categorys!: Category[];
 
-  constructor(private router: Router, private service: ProdutoService) { }
+  constructor(private router: Router, 
+    private produtoService: ProdutoService, 
+    private categoryService: CategoryService) { }
 
   ngOnInit(): void {
+    this.categoryService.list().subscribe((categorys) => {
+      this.categorys = categorys;
+    })
   }
 
   cadastrar(): void {
@@ -28,9 +35,8 @@ export class CadastrarProdutoComponent implements OnInit {
       stockQuantity: this.stockQuantity,
       categoryId: this.categoryId
     };
-    this.service.create(product).subscribe(product => {
-      console.log(product);
-      this.router.navigate([""]);
+    this.produtoService.create(product).subscribe(product => {
+      this.router.navigate(["product/list"]);
     });
   }
 

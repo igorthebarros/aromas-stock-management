@@ -27,9 +27,16 @@
           <input matInput placeholder="Quantidade" type="number" name="stockQuantity" [(ngModel)]="stockQuantity"/>
         </mat-form-field>
   
-        <mat-form-field class="example-full-width" >
+        <!-- <mat-form-field class="example-full-width" >
           <mat-label for="categoryId">ID da categoria</mat-label>
           <input matInput placeholder="ID" type="number" name="categoryId" [(ngModel)]="categoryId"/>
+        </mat-form-field> -->
+
+        <mat-form-field class="input" id="categoria"  class="example-full-width">
+          <mat-label for="category">Categoria:</mat-label>
+          <mat-select name="category" [(ngModel)]="categoryId">
+            <mat-option *ngFor="let category of categorys" value="{{ category.id }}">{{ category.name }}</mat-option>
+          </mat-select>
         </mat-form-field>
 
         <mat-slide-toggle name="inStock" [(ngModel)]="isInStock">Em estoque</mat-slide-toggle>
