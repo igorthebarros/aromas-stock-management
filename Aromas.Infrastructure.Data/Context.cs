@@ -40,7 +40,7 @@ namespace Aromas.Infra.Data.Context
         }
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
-            builder.UseSqlServer("Server=tcp:numenor.database.windows.net,1433;Initial Catalog=aromasbd;Persist Security Info=False;User ID=frodo;Password=senh@123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+            builder.UseSqlServer("Server=tcp:aromasdesenvolvimento.database.windows.net,1433;Initial Catalog=Aromas_DB;Persist Security Info=False;User ID=aromas;Password=Admin123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
         }
 
         private void SetDateTimeNow()

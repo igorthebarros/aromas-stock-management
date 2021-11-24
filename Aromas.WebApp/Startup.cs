@@ -50,6 +50,8 @@ namespace Aromas.WebApp
                 config.AddProfile<UserMapperProfile>();
                 config.AddProfile<ProductMapperProfile>();
                 config.AddProfile<CategoryMapperProfile>();
+                config.AddProfile<PolicyMapperProfile>();
+
             });
 
             IMapper mapper = autoMapperConfig.CreateMapper();
@@ -59,17 +61,20 @@ namespace Aromas.WebApp
             services.AddTransient<IUserAppService, UserAppService>();
             services.AddTransient<ICategoryAppService, CategoryAppService>();
             services.AddTransient<IProductAppService, ProductAppService>();
+            services.AddTransient<IPolicyAppService, PolicyAppService>();
 
             services.AddTransient(typeof(IServiceBase<>), typeof(ServiceBase<>));
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<IPolicyService, PolicyService>();
 
             services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IPolicyRepository, PolicyRepository>();
 
             services.AddMvc(options =>
             {
