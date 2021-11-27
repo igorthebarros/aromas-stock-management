@@ -1,4 +1,4 @@
-﻿namespace Aromas.App.Settings
+﻿namespace Aromas.Domain.Settings
 {
     public static class TokenSetting
     {

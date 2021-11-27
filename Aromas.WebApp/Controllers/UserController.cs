@@ -15,9 +15,9 @@ namespace Aromas.MVC.Controllers
     {
         readonly IMapper _mapper;
         private readonly IUserAppService _userAppService;
-        private readonly ITokenService _tokenService;
+        private readonly ITokenAppService _tokenService;
 
-        public UserController(IUserAppService userAppService, ITokenService tokenService, IMapper mapper)
+        public UserController(IUserAppService userAppService, ITokenAppService tokenService, IMapper mapper)
         {
             _userAppService = userAppService;
             _tokenService = tokenService;
@@ -96,7 +96,7 @@ namespace Aromas.MVC.Controllers
 
                 _userAppService.Create(user);
                 TempData["success"] = "New user created!";
-                return RedirectToAction(nameof(Index));
+                return Ok(RedirectToAction(nameof(Index)));
             }
             catch (Exception ex)
             {

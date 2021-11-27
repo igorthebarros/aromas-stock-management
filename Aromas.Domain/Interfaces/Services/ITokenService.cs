@@ -2,8 +2,8 @@
 
 namespace Aromas.Domain.Interfaces.Services
 {
-    public interface ICategoryService : IServiceBase<Category>
+    public interface ITokenService
     {
-
+        public string GenerateToken(User user);
     }
 }

@@ -30,7 +30,7 @@ namespace Aromas.WebApp
 
         public void ConfigureServices(IServiceCollection services)
         {
-            var key = Encoding.ASCII.GetBytes(App.Settings.TokenSetting.Secret);
+            var key = Encoding.ASCII.GetBytes(Domain.Settings.TokenSetting.Secret);
 
             services.AddAuthentication(a =>
             {
@@ -82,11 +82,13 @@ namespace Aromas.WebApp
             services.AddTransient<IUserAppService, UserAppService>();
             services.AddTransient<ICategoryAppService, CategoryAppService>();
             services.AddTransient<IProductAppService, ProductAppService>();
+            services.AddTransient<ITokenAppService, TokenAppService>();
 
             services.AddTransient(typeof(IServiceBase<>), typeof(ServiceBase<>));
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<ITokenService, TokenService>();
 
             services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
             services.AddScoped<IUserRepository, UserRepository>();

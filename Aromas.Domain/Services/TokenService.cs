@@ -1,18 +1,16 @@
 ﻿using Aromas.Domain.Entities;
+using Aromas.Domain.Interfaces.Services;
 using Microsoft.IdentityModel.Tokens;
 using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace Aromas.App.Services
+namespace Aromas.Domain.Services
 {
-    public static class TokenService
+    public class TokenService : ITokenService
     {
-        public static string GenerateToken(User user)
+        public string GenerateToken(User user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(Settings.TokenSetting.Secret);
