@@ -2,9 +2,11 @@
 using Aromas.Domain.Entities;
 using Aromas.MVC.ViewModels;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Aromas.MVC.Controllers
 {
@@ -13,11 +15,35 @@ namespace Aromas.MVC.Controllers
     {
         readonly IMapper _mapper;
         private readonly IUserAppService _userAppService;
+        private readonly ITokenAppService _tokenService;
 
-        public UserController(IUserAppService userAppService, IMapper mapper)
+        public UserController(IUserAppService userAppService, ITokenAppService tokenService, IMapper mapper)
         {
             _userAppService = userAppService;
+            _tokenService = tokenService;
             _mapper = mapper;
+        }
+
+        public ActionResult Login()
+        {
+            return Ok();
+        }
+
+        [HttpPost]
+        [Route("User/Login")]
+        [AllowAnonymous]
+        public async Task<ActionResult<dynamic>> Login([FromBody] User model)
+        {
+            var user = await _userAppService.CheckUser(model.Email, model.Password);
+
+            if(user == null)
+                return NotFound(new { message = "Not Found"});
+
+            var token = _tokenService.GenerateToken(user);
+
+            user.Password = "";
+
+            return user;
         }
 
         [HttpGet]
@@ -70,7 +96,7 @@ namespace Aromas.MVC.Controllers
 
                 _userAppService.Create(user);
                 TempData["success"] = "New user created!";
-                return RedirectToAction(nameof(Index));
+                return Ok(RedirectToAction(nameof(Index)));
             }
             catch (Exception ex)
             {

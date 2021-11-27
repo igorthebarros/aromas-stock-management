@@ -7,6 +7,5 @@ namespace Aromas.App.Interface
     {
         public List<Product> GetByIsInStock(bool isInStock);
         public List<Product> GetByCategoryId(int id);
-
     }
 }

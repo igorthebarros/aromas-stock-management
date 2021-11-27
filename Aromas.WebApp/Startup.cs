@@ -7,12 +7,15 @@ using Aromas.Infra.Data.Context;
 using Aromas.Infra.Data.Repositories;
 using Aromas.MVC.AutoMapper;
 using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace Aromas.WebApp
 {
@@ -27,6 +30,26 @@ namespace Aromas.WebApp
 
         public void ConfigureServices(IServiceCollection services)
         {
+            var key = Encoding.ASCII.GetBytes(Domain.Settings.TokenSetting.Secret);
+
+            services.AddAuthentication(a =>
+            {
+                a.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                a.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+                .AddJwtBearer(b =>
+                {
+                    b.RequireHttpsMetadata = false;
+                    b.SaveToken = true;
+                    b.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(key),
+                        ValidateIssuer = false,
+                        ValidateAudience = false
+                    };
+                });
+
             services.AddCors(
                 options => 
                 {
@@ -59,11 +82,13 @@ namespace Aromas.WebApp
             services.AddTransient<IUserAppService, UserAppService>();
             services.AddTransient<ICategoryAppService, CategoryAppService>();
             services.AddTransient<IProductAppService, ProductAppService>();
+            services.AddTransient<ITokenAppService, TokenAppService>();
 
             services.AddTransient(typeof(IServiceBase<>), typeof(ServiceBase<>));
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<ITokenService, TokenService>();
 
             services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
             services.AddScoped<IUserRepository, UserRepository>();
@@ -91,6 +116,7 @@ namespace Aromas.WebApp
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {
