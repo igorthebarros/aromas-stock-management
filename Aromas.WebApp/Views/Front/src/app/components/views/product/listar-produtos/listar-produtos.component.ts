@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Product } from 'src/app/models/product';
@@ -15,16 +16,8 @@ export class ListarProdutosComponent implements OnInit {
   
   product!: MatTableDataSource<Product>;
   displayedColumns: string[] = [ 'nome', 'quantidade', 'idcategory', 'isInStock', 'acoes'];
-
+  
   constructor(private service: ProdutoService, private router: Router) { }
-
-  // ngOnInit(): void {
-
-  //   this.service.list().subscribe((products) => {
-  //     this.products = products;
-  //     console.log(products);
-  //   });
-  // }
 
   ngOnInit(): void {
     this.service.list().subscribe((product) => {
@@ -37,10 +30,9 @@ export class ListarProdutosComponent implements OnInit {
       this.product = new MatTableDataSource<Product>(product);
       this.router.navigate(['user/list']);
     });
-    this.ngOnInit();
   }
   
-    cadastrarProduto(): void {
-      this.router.navigate(["product/register"]);
-    }
+  cadastrarProduto(): void {
+    this.router.navigate(["product/register"]);
+  }
 }

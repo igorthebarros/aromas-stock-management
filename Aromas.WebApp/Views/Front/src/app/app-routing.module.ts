@@ -1,3 +1,4 @@
+import { LoginComponent } from './components/views/auth/login/login.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CadastrarCategoriaComponent } from './components/views/category/cadastrar-categoria/cadastrar-categoria.component';
@@ -9,7 +10,8 @@ import { RegisterUserComponent } from './components/views/user/register-user/reg
 import { UpdateUserComponent } from './components/views/user/update-user/update-user.component';
 
 const routes: Routes = [
-  // { path: "",component: ListarProdutosComponent},
+  
+  { path: "",component: LoginComponent},
 
   { path: "product/list",component: ListarProdutosComponent},
   { path: "product/register",component: CadastrarProdutoComponent},

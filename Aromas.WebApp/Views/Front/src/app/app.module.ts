@@ -27,6 +27,9 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatSelectModule} from '@angular/material/select';
 import { UpdateUserComponent } from './components/views/user/update-user/update-user.component';
 
+import {ReactiveFormsModule} from '@angular/forms';
+import { LoginComponent } from './components/views/auth/login/login.component';
+
 
 @NgModule({
   declarations: [
@@ -38,7 +41,8 @@ import { UpdateUserComponent } from './components/views/user/update-user/update-
     HeaderComponent,
     CadastrarCategoriaComponent,
     ListarCategoriaComponent,
-    UpdateUserComponent
+    UpdateUserComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +60,8 @@ import { UpdateUserComponent } from './components/views/user/update-user/update-
     MatIconModule,
     MatListModule,
     MatSlideToggleModule,
-    MatSelectModule
+    MatSelectModule,
+    ReactiveFormsModule
 
   ],
   providers: [],
