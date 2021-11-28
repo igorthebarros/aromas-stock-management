@@ -4,6 +4,11 @@
     <mat-icon aria-label="Example home icon">add</mat-icon>
     Cadastrar Produtos
   </button>
+
+  <button mat-raised-button color="primary" routerLink="/product/inStock">
+    <mat-icon aria-label="Example home icon">filter_list</mat-icon>
+     Produtos em estoque
+  </button>
 </mat-card>
 
   <table mat-table [dataSource]="product" class="mat-elevation-z6">

@@ -16,6 +16,10 @@ export class ProdutoService {
     return this.http.get<Product[]>(`${this.baseUrl}/Product`);
   }
 
+  GetProductByInStock(): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.baseUrl}/Product/GetProductByIsInStock/{isInStock}`);
+  }
+
   create(product: Product): Observable<Product>{
     return this.http.post<Product>(`${this.baseUrl}/Product/Create`, product);
   }

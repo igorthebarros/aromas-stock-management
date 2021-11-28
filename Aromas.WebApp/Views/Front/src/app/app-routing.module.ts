@@ -1,3 +1,4 @@
+import { ListProductInStockComponent } from './components/views/product/list-product-in-stock/list-product-in-stock.component';
 import { LoginComponent } from './components/views/auth/login/login.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -21,7 +22,8 @@ const routes: Routes = [
   
   { path: 'user/register', component: RegisterUserComponent},
   { path: 'user/list', component: ListUserComponent},
-  { path: "user/edit", component: UpdateUserComponent}
+  { path: "user/edit", component: UpdateUserComponent},
+  { path: "product/inStock", component: ListProductInStockComponent},
   
 ];
 

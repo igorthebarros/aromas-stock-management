@@ -29,6 +29,7 @@ import { UpdateUserComponent } from './components/views/user/update-user/update-
 
 import {ReactiveFormsModule} from '@angular/forms';
 import { LoginComponent } from './components/views/auth/login/login.component';
+import { ListProductInStockComponent } from './components/views/product/list-product-in-stock/list-product-in-stock.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { LoginComponent } from './components/views/auth/login/login.component';
     CadastrarCategoriaComponent,
     ListarCategoriaComponent,
     UpdateUserComponent,
-    LoginComponent
+    LoginComponent,
+    ListProductInStockComponent
   ],
   imports: [
     BrowserModule,
