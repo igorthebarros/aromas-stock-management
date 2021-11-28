@@ -39,7 +39,7 @@ namespace Aromas.MVC.Controllers
             try
             {
                 var model = new PolicyViewModel();
-                return View(model);
+                return Ok(View(model));
             }
             catch (Exception ex)
             {

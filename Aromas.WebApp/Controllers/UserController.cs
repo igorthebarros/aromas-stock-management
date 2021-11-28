@@ -32,9 +32,9 @@ namespace Aromas.MVC.Controllers
         [HttpPost]
         [Route("User/Login")]
         [AllowAnonymous]
-        public async Task<ActionResult<dynamic>> Login([FromBody] User model)
+        public async Task<ActionResult<dynamic>> Login(string email, string password)
         {
-            var user = await _userAppService.CheckUser(model.Email, model.Password);
+            var user = await _userAppService.CheckUser(email, password);
 
             if(user == null)
                 return NotFound(new { message = "Not Found"});
@@ -43,7 +43,7 @@ namespace Aromas.MVC.Controllers
 
             user.Password = "";
 
-            return user;
+            return Ok();
         }
 
         [HttpGet]
