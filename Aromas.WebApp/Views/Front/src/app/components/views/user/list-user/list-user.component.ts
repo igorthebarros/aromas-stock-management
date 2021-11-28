@@ -13,7 +13,6 @@ export class ListUserComponent implements OnInit {
 
   id!: number;
 
-  // users: User[] = [];
   user!: MatTableDataSource<User>;
   displayedColumns: string[] = [ 'nome', 'surname', 'email', 'situacao', 'acoes'];
 
@@ -22,17 +21,15 @@ export class ListUserComponent implements OnInit {
   ngOnInit(): void {
     this.service.list().subscribe((user) => {
       this.user = new MatTableDataSource<User>(user);
-      // this.users = users;
-      console.log(user);
     })
   }
   
   delete(id: number): void {
     this.service.delete(id).subscribe((user) => {
       this.user = new MatTableDataSource<User>(user);
-      //this.router.navigate(['user/list']);
-      this.ngOnInit();
+      this.router.navigate(['user/list']);
     });
+    // this.ngOnInit();
   }
 
   cadastrarUsuario(): void {

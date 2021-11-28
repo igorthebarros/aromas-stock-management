@@ -228,9 +228,9 @@ namespace Aromas.MVC.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpDelete]
         [Route("Product/Delete/{id}")]
-        [ValidateAntiForgeryToken]
+        // [ValidateAntiForgeryToken]
         public ActionResult Delete(ProductViewModel product)
         {
             try

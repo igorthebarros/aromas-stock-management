@@ -21,7 +21,14 @@ import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './components/template/header/header.component';
 import { CadastrarCategoriaComponent } from './components/views/category/cadastrar-categoria/cadastrar-categoria.component';
 import { ListarCategoriaComponent } from './components/views/category/listar-categoria/listar-categoria.component';
+
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+
+import {MatSelectModule} from '@angular/material/select';
+import { UpdateUserComponent } from './components/views/user/update-user/update-user.component';
+
+import {ReactiveFormsModule} from '@angular/forms';
+import { LoginComponent } from './components/views/auth/login/login.component';
 
 
 @NgModule({
@@ -33,7 +40,9 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     ListUserComponent,
     HeaderComponent,
     CadastrarCategoriaComponent,
-    ListarCategoriaComponent
+    ListarCategoriaComponent,
+    UpdateUserComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +59,10 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     MatToolbarModule,
     MatIconModule,
     MatListModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatSelectModule,
+    ReactiveFormsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

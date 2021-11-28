@@ -1,13 +1,10 @@
 <mat-card class="title_list">
-    <mat-card-title>
-      Categorias Cadastradas
-    </mat-card-title>
-    <mat-card>
-      <a>
-        <button mat-raised-button color="primary" (click)="cadastrarCategory()">Cadastrar Categoria</button>
-      </a>
-    </mat-card>
-  </mat-card>
+  <h1>Categorias Cadastradas</h1>
+    <button mat-raised-button color="primary" (click)="cadastrarCategory()">
+      <mat-icon aria-label="Example home icon">add</mat-icon>
+      Cadastrar Categoria
+    </button>
+</mat-card>
   
   <table mat-table [dataSource]="category" class="mat-elevation-z6">
     <ng-container matColumnDef="nome">
