@@ -29,4 +29,9 @@ export class ListPolicyComponent implements OnInit {
       this.router.navigate(['policy/list']);
     });
   }
+
+  filtrar(event: Event) {
+    const filtro = (event.target as HTMLInputElement).value;
+    this.policy.filter = filtro.trim().toLowerCase();
+  }  
 }

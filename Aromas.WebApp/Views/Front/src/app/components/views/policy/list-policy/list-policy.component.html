@@ -5,6 +5,12 @@
       Cadastrar Políticas
     </button>
   </mat-card>
+
+  <mat-card class="buscar">
+    <mat-form-field class="example-full-width">
+      <input  matInput (keyup)="filtrar($event)" placeholder="Buscar Políticas">
+    </mat-form-field>
+  </mat-card>
   
   <table mat-table [dataSource]="policy" class="mat-elevation-z6">
     <ng-container matColumnDef="nome">
