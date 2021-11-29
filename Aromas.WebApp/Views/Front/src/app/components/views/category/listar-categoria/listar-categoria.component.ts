@@ -26,4 +26,9 @@ export class ListarCategoriaComponent implements OnInit {
   cadastrarCategory(): void {
     this.router.navigate(["category/register"]);
   }
+
+  filtrar(event: Event) {
+    const filtro = (event.target as HTMLInputElement).value;
+    this.category.filter = filtro.trim().toLowerCase();
+  }  
 }

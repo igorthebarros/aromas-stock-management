@@ -1,0 +1,29 @@
+table {
+    margin-top: 16px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  mat-icon {
+  margin-right: 8px;
+  }
+  
+  .title_list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  }
+  
+  .margin_acoes {
+   margin-left: 10px;
+  }
+  
+  .title_list h1{
+    margin:0;
+  }
+  
+  .example-full-width {
+    width: 80%;
+  }
+  

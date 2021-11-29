@@ -110,7 +110,6 @@ namespace Aromas.MVC.Controllers
                     TempData["error"] = "Fail!";
                     return RedirectToAction(nameof(Index));
                 }
-                    
                 var product = _mapper.Map<List<ProductViewModel>>(model);
                 return Ok(product);
             }
@@ -228,9 +227,9 @@ namespace Aromas.MVC.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpDelete]
         [Route("Product/Delete/{id}")]
-        [ValidateAntiForgeryToken]
+        // [ValidateAntiForgeryToken]
         public ActionResult Delete(ProductViewModel product)
         {
             try

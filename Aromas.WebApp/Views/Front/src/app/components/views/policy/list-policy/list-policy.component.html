@@ -1,0 +1,40 @@
+<mat-card class="title_list">
+    <h1>Políticas Cadastradas</h1>
+    <button mat-raised-button color="primary" routerLink="/policy">
+      <mat-icon aria-label="Example home icon">add</mat-icon>
+      Cadastrar Políticas
+    </button>
+  </mat-card>
+
+  <mat-card class="buscar">
+    <mat-form-field class="example-full-width">
+      <input  matInput (keyup)="filtrar($event)" placeholder="Buscar Políticas">
+    </mat-form-field>
+  </mat-card>
+  
+  <table mat-table [dataSource]="policy" class="mat-elevation-z6">
+    <ng-container matColumnDef="nome">
+      <th mat-header-cell *matHeaderCellDef>Nome</th>
+      <td mat-cell *matCellDef="let policy"> {{ policy.name }} </td>
+    </ng-container>
+     
+    <ng-container matColumnDef="situacao">
+      <th mat-header-cell *matHeaderCellDef>Situação</th>
+      <td mat-cell *matCellDef="let policy"> {{ policy.active == 1 ? "Ativo" : "Inativo"}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="acoes">
+      <th mat-header-cell *matHeaderCellDef> Ações </th>
+      <td mat-cell *matCellDef="let policy">
+        <a>
+          <button mat-raised-button color="primary" >Editar</button>
+        </a>
+        <a class="margin_acoes">
+          <button mat-raised-button color="warn" (click)="delete(policy.id)">Deletar</button>
+        </a>
+      </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
