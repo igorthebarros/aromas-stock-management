@@ -1,33 +1,32 @@
 <mat-card class="container">
     <div class="button_list">
       <mat-card-title>
-        Novo Produto
+        Editar Produto
       </mat-card-title>
     </div>
 
     <mat-card-content>
         <mat-form-field class="example-full-width" >
           <mat-label for="name">Nome</mat-label>
-          <input matInput placeholder="Nome" type="text" name="name" [(ngModel)]="name"/>
+          <input matInput placeholder="Nome" type="text" name="name" [(ngModel)]="product.name"/>
         </mat-form-field>
-  
+
         <mat-form-field class="example-full-width" >
           <mat-label for="stockQuantity">Quantidade</mat-label>
-          <input matInput placeholder="Quantidade" type="number" name="stockQuantity" [(ngModel)]="stockQuantity"/>
+          <input matInput placeholder="Quantidade" type="number" name="stockQuantity" [(ngModel)]="product.stockQuantity"/>
         </mat-form-field>
 
         <mat-form-field class="input" id="categoria"  class="example-full-width">
           <mat-label for="category">Categoria:</mat-label>
-          <mat-select name="category" [(ngModel)]="categoryId">
+          <mat-select name="category" [(ngModel)]="categorys">
             <mat-option *ngFor="let category of categorys" value="{{ category.id }}">{{ category.name }}</mat-option>
           </mat-select>
         </mat-form-field>
 
-        <mat-slide-toggle name="inStock" [(ngModel)]="isInStock">Em estoque</mat-slide-toggle>
+        <mat-slide-toggle name="inStock" [(ngModel)]="product.isInStock">Em estoque</mat-slide-toggle>
 
       </mat-card-content>
     
-      <button mat-raised-button color="primary" (click)="cadastrar()">Cadastrar</button>
-      <button class="margin_cancelar" mat-raised-button color="warn" routerLink="" (click)="cancelar()">Cancelar</button>
-</mat-card>
-    
+      <button mat-raised-button color="primary" (click)="update()">Alterar</button>
+      <button class="margin_cancelar" mat-raised-button color="warn" routerLink="/product/list">Cancelar</button>
+    </mat-card>

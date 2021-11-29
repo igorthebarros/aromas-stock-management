@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
 
@@ -10,32 +10,21 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UpdateUserComponent implements OnInit{ 
 
-  id!: number;
-  name!: string;
-  surname!: string;
-  email!: string;
-  password!: string;
-  active!: boolean;
-
-  constructor(private service: UserService, private router: Router) { }
+  user!: User;
+  id!: string;
+  
+  constructor(private service: UserService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.route.snapshot.paramMap.get('id')
+    this.service.searchId(this.id).subscribe(user => {
+      this.user = user;
+    })
   }
 
   update(): void{
-    let user: User = {
-      id: this.id,
-      name: this.name,
-      surname: this.surname,
-      email: this.email,
-      password: this.password,
-      active: this.active,
-    };
-    this.service.update(user).subscribe(user => {
-      console.log(user);
+    this.service.update(this.user).subscribe(() => {
       this.router.navigate(['user/list']);
     });
   }
-
-
 }

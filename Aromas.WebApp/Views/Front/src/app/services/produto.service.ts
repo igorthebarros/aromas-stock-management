@@ -20,7 +20,15 @@ export class ProdutoService {
     return this.http.post<Product>(`${this.baseUrl}/Product/Create`, product);
   }
 
-  delete(id: number): Observable<Product[]> {
-    return this.http.delete<Product[]>(`${this.baseUrl}/Product/Delete/${id}`);
+  delete(id: number): Observable<Product> {
+    return this.http.delete<Product>(`${this.baseUrl}/Product/Delete/${id}`);
+  }
+
+  searchId(id: string): Observable<Product> {
+    return this.http.get<Product>(`${this.baseUrl}/Product/${id}`);
+  }
+  
+  update(product: Product): Observable<Product>{
+    return this.http.put<Product>(`${this.baseUrl}/Product/Edit`, product);
   }
 }

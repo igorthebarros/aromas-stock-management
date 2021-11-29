@@ -29,6 +29,9 @@ import { UpdateUserComponent } from './components/views/user/update-user/update-
 
 import {ReactiveFormsModule} from '@angular/forms';
 import { LoginComponent } from './components/views/auth/login/login.component';
+import { ProductUpdateComponent } from './components/views/product/product-update/product-update.component';
+import { RegisterPolicyComponent } from './components/views/policy/register-policy/register-policy.component';
+import { ListPolicyComponent } from './components/views/policy/list-policy/list-policy.component';
 
 
 @NgModule({
@@ -42,7 +45,10 @@ import { LoginComponent } from './components/views/auth/login/login.component';
     CadastrarCategoriaComponent,
     ListarCategoriaComponent,
     UpdateUserComponent,
-    LoginComponent
+    LoginComponent,
+    ProductUpdateComponent,
+    RegisterPolicyComponent,
+    ListPolicyComponent
   ],
   imports: [
     BrowserModule,

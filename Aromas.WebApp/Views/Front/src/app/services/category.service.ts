@@ -19,5 +19,4 @@ export class CategoryService {
   list(): Observable<Category[]> {
     return this.http.get<Category[]>(`${this.baseUrl}/category`);
   }
-
 }

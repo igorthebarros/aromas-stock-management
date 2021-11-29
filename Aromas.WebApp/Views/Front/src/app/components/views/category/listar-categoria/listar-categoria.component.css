@@ -22,5 +22,14 @@ justify-content: space-between;
 .title_list h1{
   margin:0;
 }
-  
+
+.example-full-width {
+  width: 80%;
+}
+
+.buscar{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
     

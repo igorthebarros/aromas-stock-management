@@ -6,6 +6,12 @@
   </button>
 </mat-card>
 
+<mat-card class="buscar">
+  <mat-form-field class="example-full-width">
+    <input  matInput (keyup)="filtrar($event)" placeholder="Buscar Produto">
+  </mat-form-field>
+</mat-card>
+     
   <table mat-table [dataSource]="product" class="mat-elevation-z6">
     <ng-container matColumnDef="nome">
       <th mat-header-cell *matHeaderCellDef>Nome</th>
@@ -30,8 +36,8 @@
     <ng-container matColumnDef="acoes">
       <th mat-header-cell *matHeaderCellDef> Ações </th>
       <td mat-cell *matCellDef="let product">
-        <a routerLink="">
-          <button mat-raised-button color="primary">Editar</button>
+        <a routerLink="/product/edit/{{product.id}}">
+          <button mat-raised-button color="primary" >Editar</button>
         </a>
         <a class="margin_acoes">
           <button mat-raised-button color="warn" (click)="delete(product.id)">Deletar</button>

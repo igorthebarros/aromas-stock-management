@@ -21,6 +21,7 @@ export class ListUserComponent implements OnInit {
   ngOnInit(): void {
     this.service.list().subscribe((user) => {
       this.user = new MatTableDataSource<User>(user);
+      // console.log(user);
     })
   }
   
@@ -35,4 +36,9 @@ export class ListUserComponent implements OnInit {
   cadastrarUsuario(): void {
     this.router.navigate(["user/register"]);
   }
+
+  filtrar(event: Event) {
+    const filtro = (event.target as HTMLInputElement).value;
+    this.user.filter = filtro.trim().toLowerCase();
+  }  
 }
