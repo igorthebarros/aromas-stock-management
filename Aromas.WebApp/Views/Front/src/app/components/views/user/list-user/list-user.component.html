@@ -1,25 +1,15 @@
-<!-- <p>list-user works!</p>
-
-
-  <a>
-    <button mat-raised-button color="primary" routerLink="">Cadastrar Usuário</button>
-  </a>
-
-<ol>
-    <li *ngFor="let user of users">
-        {{ user.name }}
-    </li>
-</ol> -->
-
 <mat-card class="title_list">
-  <mat-card-title>
-    Usuários Cadastrados
-  </mat-card-title>
-  <mat-card>
-    <a>
-      <button mat-raised-button color="primary" (click)="cadastrarUsuario()">Cadastrar Usuário</button>
-    </a>
-  </mat-card>
+  <h1>Usuários Cadastrados</h1>
+  <button mat-raised-button color="primary" (click)="cadastrarUsuario()">
+    <mat-icon aria-label="Example home icon">add</mat-icon>
+    Cadastrar Usuário
+  </button>
+</mat-card>
+
+<mat-card class="buscar">
+  <mat-form-field class="example-full-width">
+    <input  matInput (keyup)="filtrar($event)" placeholder="Buscar Usuário">
+  </mat-form-field>
 </mat-card>
 
 <table mat-table [dataSource]="user" class="mat-elevation-z6">
@@ -46,7 +36,7 @@
   <ng-container matColumnDef="acoes">
     <th mat-header-cell *matHeaderCellDef> Ações </th>
     <td mat-cell *matCellDef="let user">
-      <a routerLink="">
+      <a routerLink="/user/edit/{{user.id}}">
         <button mat-raised-button color="primary">Editar</button>
       </a>
       <a class="margin_acoes">

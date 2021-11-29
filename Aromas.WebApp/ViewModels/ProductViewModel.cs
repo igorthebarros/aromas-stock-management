@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Aromas.Domain.Entities;
 
 namespace Aromas.MVC.ViewModels
 {
@@ -19,6 +20,7 @@ namespace Aromas.MVC.ViewModels
         public int StockQuantity { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
+        public Category Category { get; set; }
         public int CategoryId { get; set; }
     }
 }

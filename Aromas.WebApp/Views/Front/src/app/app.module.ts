@@ -21,7 +21,18 @@ import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './components/template/header/header.component';
 import { CadastrarCategoriaComponent } from './components/views/category/cadastrar-categoria/cadastrar-categoria.component';
 import { ListarCategoriaComponent } from './components/views/category/listar-categoria/listar-categoria.component';
+
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+
+import {MatSelectModule} from '@angular/material/select';
+import { UpdateUserComponent } from './components/views/user/update-user/update-user.component';
+
+import {ReactiveFormsModule} from '@angular/forms';
+import { LoginComponent } from './components/views/auth/login/login.component';
+import { ProductUpdateComponent } from './components/views/product/product-update/product-update.component';
+import { RegisterPolicyComponent } from './components/views/policy/register-policy/register-policy.component';
+import { ListPolicyComponent } from './components/views/policy/list-policy/list-policy.component';
+import { ListProductInStockComponent } from './components/views/product/list-product-in-stock/list-product-in-stock.component';
 
 
 @NgModule({
@@ -33,7 +44,13 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     ListUserComponent,
     HeaderComponent,
     CadastrarCategoriaComponent,
-    ListarCategoriaComponent
+    ListarCategoriaComponent,
+    UpdateUserComponent,
+    LoginComponent,
+    ProductUpdateComponent,
+    RegisterPolicyComponent,
+    ListPolicyComponent,
+    ListProductInStockComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +67,10 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     MatToolbarModule,
     MatIconModule,
     MatListModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatSelectModule,
+    ReactiveFormsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

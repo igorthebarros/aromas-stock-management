@@ -150,19 +150,19 @@ namespace Aromas.Infra.Data.Migrations
                         .HasDefaultValue(false)
                         .HasColumnName("Active");
 
-                    b.Property<DateTime?>("CreatedAt")
-                        .IsRequired()
+                    b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
                         .HasColumnName("CreatedAt")
                         .HasDefaultValueSql("now()");
 
-                    b.Property<int>("Name")
+                    b.Property<string>("Name")
+                        .IsRequired()
                         .HasMaxLength(200)
-                        .HasColumnType("int")
+                        .HasColumnType("nvarchar(200)")
                         .HasColumnName("Name");
 
-                    b.Property<DateTime>("UpdatedAt")
+                    b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2")
                         .HasColumnName("UpdatedAt");
 
