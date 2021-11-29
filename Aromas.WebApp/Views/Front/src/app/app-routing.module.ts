@@ -1,3 +1,4 @@
+import { ListProductInStockComponent } from './components/views/product/list-product-in-stock/list-product-in-stock.component';
 import { LoginComponent } from './components/views/auth/login/login.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: "product/list",component: ListarProdutosComponent},
   { path: "product/register",component: CadastrarProdutoComponent},
   { path: "product/edit/:id",component: ProductUpdateComponent},
+  { path: "product/inStock", component: ListProductInStockComponent},
   
   { path: "category/list",component: ListarCategoriaComponent},
   { path: "category/register",component: CadastrarCategoriaComponent},

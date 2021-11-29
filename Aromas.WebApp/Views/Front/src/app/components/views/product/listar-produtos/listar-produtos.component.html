@@ -1,9 +1,19 @@
 <mat-card class="title_list">
   <h1>Produtos Cadastrados</h1>
-  <button mat-raised-button color="primary" (click)="cadastrarProduto()">
-    <mat-icon aria-label="Example home icon">add</mat-icon>
-    Cadastrar Produtos
-  </button>
+  <div>
+    <span>
+      <button mat-raised-button color="primary" (click)="cadastrarProduto()">
+        <mat-icon aria-label="Example home icon">add</mat-icon>
+        Cadastrar Produtos
+      </button>
+    </span>
+    <span class="margin">
+      <button  mat-raised-button color="primary" routerLink="/product/inStock">
+        <mat-icon aria-label="Example home icon">filter_list</mat-icon>
+        Produtos s/ Estoque
+      </button>
+    </span>
+  </div>
 </mat-card>
 
 <mat-card class="buscar">
@@ -11,7 +21,7 @@
     <input  matInput (keyup)="filtrar($event)" placeholder="Buscar Produto">
   </mat-form-field>
 </mat-card>
-     
+
   <table mat-table [dataSource]="product" class="mat-elevation-z6">
     <ng-container matColumnDef="nome">
       <th mat-header-cell *matHeaderCellDef>Nome</th>

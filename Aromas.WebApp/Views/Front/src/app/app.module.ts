@@ -32,6 +32,7 @@ import { LoginComponent } from './components/views/auth/login/login.component';
 import { ProductUpdateComponent } from './components/views/product/product-update/product-update.component';
 import { RegisterPolicyComponent } from './components/views/policy/register-policy/register-policy.component';
 import { ListPolicyComponent } from './components/views/policy/list-policy/list-policy.component';
+import { ListProductInStockComponent } from './components/views/product/list-product-in-stock/list-product-in-stock.component';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { ListPolicyComponent } from './components/views/policy/list-policy/list-
     LoginComponent,
     ProductUpdateComponent,
     RegisterPolicyComponent,
-    ListPolicyComponent
+    ListPolicyComponent,
+    ListProductInStockComponent
   ],
   imports: [
     BrowserModule,
